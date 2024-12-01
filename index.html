@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>茶河禾CoCo生态</title>
+    <link rel="icon" href="https://static.codemao.cn/pickduck/BJ6BQwKX1x.png?hash=FpCMMKouB7IebBgWoobRgJY3u1pf" type="image/png">
+
+    <meta name="keywords" content="茶河禾CoCo生态,CoCo,控件">
+    <meta name="description" content="这里提供丰富的CoCo控件，快来支持一下吧~ various CoCo widgets.">
+
+    <style>
+        /* 页面主体背景设置 */
+        body {
+            /* 设置背景图片 */
+            background-image: url('https://static.codemao.cn/pickduck/ryrWM6_71e.avif?hash=FitEqdw10JXosML-E4n3VqCZmkOH');
+            /* 设置背景图片不重复铺满整个页面 */
+            background-repeat: no-repeat;
+            /* 设置背景图片大小为覆盖整个页面 */
+            background-size: cover;
+            /* 设置背景图片固定，不随页面滚动而滚动 */
+            background-attachment: fixed;
+            /* 设置背景图片的位置为左上角（可根据需要调整） */
+            background-position: top left;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 导航栏样式 */
+       .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            backdrop-filter: blur(15px); /* 增强毛玻璃效果，可根据需要调整模糊值 */
+            background-color: rgba(255, 255, 255, 0.1); /* 半透明背景 */
+            z-index: 1000; /* 确保导航栏在最上方 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 在导航栏底部添加较浅的阴影，可调整参数改变阴影效果 */
+        }
+
+        /* 导航栏左侧的SVG图片样式 */
+      .navbar-logo {
+            width: 30px; /* 设置SVG图片宽度，可根据实际图片调整 */
+            height: 30px; /* 设置SVG图片高度，可根据实际图片调整 */
+            margin-right: 10px; /* 与旁边文字或元素的间距 */
+        }
+
+        /* 导航栏链接容器样式，使其内容居中 */
+        .navbar-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1; /* 让此容器占据剩余的可用空间，以便更好地居中 */
+        }
+
+        /* 导航栏文字链接的通用样式 */
+      .navbar-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s ease; /* 过渡效果，使颜色变化更平滑 */
+            white-space: nowrap; /* 防止文字换行，保持在一行内显示 */
+        }
+
+
+        /* 导航栏文字链接鼠标悬停时的样式 */
+      .navbar-link:hover {
+        color: #ffb133; /* 改变文字颜色，可替换为你想要的颜色 */
+        text-shadow: 0 0 5px #ffb133; /* 添加文字阴影效果，颜色与文字颜色一致，可调整参数 */
+        }
+
+        /* 导航栏右侧搜索图标样式 */
+      .navbar-search {
+            width: 20px;
+            height: 20px;
+            margin-left: 0; /* 与旁边文字或元素的间距 */
+            margin-right: 35px; 
+            cursor: pointer; /* 鼠标悬停变为手型，表示可点击 */
+        }
+
+        /* 弹出的搜索卡片样式 */
+        .search-card {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            width: 300px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            display: none;
+            /* 初始隐藏 */
+            z-index: 1001;
+            /* 层级高于导航栏一层 */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+
+        /* 搜索输入框样式 */
+        .search-input {
+            width: 80%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 搜索输入框的关闭按钮样式 */
+        .search-close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            width: 15px;
+            height: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+            line-height: 1;
+        }
+
+
+        /* 赞赏文字悬停时的样式 */
+        .navbar-link#appreciate:hover {
+            position: relative;
+        }
+
+        /* 赞赏文字悬停时弹出的卡片样式 */
+     .navbar-link#appreciate:hover::after {
+            content: "";
+            position: absolute;
+            top: 140%;/*向下移*/
+            left: 50%;
+            transform: translateX(-50%);
+            width: 260px;
+            height: 240px;
+            background-image: url('https://static.codemao.cn/pickduck/B1MzxTOQ1l.png?hash=FnHt-S_S7kyXw4C7SeUDlIQ9b1cA');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(15px);
+            display: block;
+            border-radius: 15px;
+            z-index: 1001; /* 确保导航栏在最上方+1 */
+        }
+
+        .navbar-link#home {
+            color: rgb(255, 242, 0); /* 设置为蓝色，可根据需求替换为其他颜色 */
+        }
+
+
+    /* 卡片容器样式，可根据实际情况调整布局等 */
+    #card-container {
+            margin-top: 80px; /* 给导航栏留出空间，可根据导航栏高度调整 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 单个卡片的基础样式 */
+      .card {
+            width: 80%; /* 可根据需求调整卡片宽度 */
+            max-width: 600px; /* 设置最大宽度，避免在大屏幕上过于宽 */
+            background-color: rgba(255, 255, 255, 0.1); /* 半透明背景，营造毛玻璃效果 */
+            backdrop-filter: blur(15px); /* 毛玻璃模糊效果 */
+            border-radius: 10px; /* 圆角 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 阴影 */
+            margin-bottom: 20px; /* 卡片之间的间距 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            cursor: pointer; /* 鼠标悬停变为手型，表示可点击 */
+        }
+
+        /* 卡片内容区域样式 */
+      .card-content {
+            flex: 1;
+        }
+
+        /* 卡片标题样式 */
+      .card-title {
+            color: white;
+            margin: 0;
+            font-size: 20px;
+        }
+
+        /* 卡片标题超链接样式，去除下划线等默认样式 */
+      .card-title-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 卡片描述文字样式 */
+      .card-description {
+            color: #ccc;
+            margin: 5px 0 0 0;
+        }
+
+        /* 卡片右侧大于号样式 */
+      .card-arrow {
+            color: white;
+            font-size: 24px;
+        }
+
+
+        /* 设置超链接固定在左下角 */
+        #fixed-link {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+
+        /* 设置文字颜色 */
+        color: rgb(255, 251, 0);
+
+        /* 去除下划线 */
+        text-decoration: none;
+
+        /* 设置鼠标悬停时的样式 */
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        /* 设置文字大小 */
+        font-size: 12px;
+        }
+
+        #fixed-link:hover {
+        color: rgb(255, 0, 140); /* 鼠标悬停时改变文字颜色，可根据需要修改 */
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="navbar">
+        <!-- 导航栏左侧的SVG图片 -->
+        <img src="https://static.codemao.cn/pickduck/HyFIywFX1g.png?hash=FkL3F425EBcNCT3lTN79arMaRVT8" alt="Logo" class="navbar-logo">
+        <!-- 导航栏中间的文字链接 -->
+        <div class="nav-links">
+            <a href="https://cojian.chahehe.space" class="navbar-link" id="home">首页</a>
+            <a href="https://cojian.chahehe.space/ZSh" class="navbar-link" id="appreciate">赞赏</a>
+            <a href="https://cojian.chahehe.space/CoCoApps" class="navbar-link">CoCo精选应用</a>
+        </div>
+        <!-- 导航栏右侧的搜索图标 -->
+        <img src="https://static.codemao.cn/pickduck/ByCXT7YQ1l.png?hash=FkYgGjxuwvo7dlvOtYFOOWAag8Bo" alt="Search" class="navbar-search">
+    </div>
+
+    <div id="card-container">
+        <!-- 这里可以根据需要添加多个卡片，以下是一个卡片示例，可复制多份并修改内容 -->
+        <div class="card">
+            <div class="card-content">
+                <a href="https://cojian.chahehe.space/#cj1" class="card-title-link">
+                    <h3 class="card-title">文本简约线标标签栏</h3>
+                </a>
+                <p class="card-description">#cj1 简约风格的标签栏，点击控件名查看详情。</p>
+            </div>
+            <span class="card-arrow">&gt;</span>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <a href="https://cojian.chahehe.space/#cj2" class="card-title-link">
+                    <h3 class="card-title">敬请期待</h3>
+                </a>
+                <p class="card-description">#cj2 敬请期待</p>
+            </div>
+            <span class="card-arrow">&gt;</span>
+        </div>
+    </div>
+
+    <!-- 弹出的搜索卡片 -->
+    <div class="search-card">
+        <input type="text" class="search-input" placeholder="输入关键词搜索">
+        <div class="search-close-btn">×</div>
+    </div>
+
+    <div>
+        <a href="#" id="fixed-link">萌ICP备</a>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let startWebTitle_welcomeText_1 = "欢迎你来到这里，这里有丰富的控件供你使用，支持一下吧~";
+            // 更改标题
+            for (let i = 0; i < startWebTitle_welcomeText_1.length; i++) {
+                setTimeout(function() {
+                    // 获取当前要添加到标题的字符
+                    let currentChar = startWebTitle_welcomeText_1.substring(0, i + 1);
+                    // 更新网页标题
+                    document.title = currentChar;
+                }, i * 300);
+            }
+            // 等待3秒
+            setTimeout(function() {
+                document.title = "茶河禾CoCo生态";
+            }, startWebTitle_welcomeText_1.length * 300 + 3000);
+        });
+
+
+        // 获取搜索图标元素
+        const searchIcon = document.querySelector('.navbar-search');
+        // 获取弹出的搜索卡片元素
+        const searchCard = document.querySelector('.search-card');
+        // 获取搜索输入框元素
+        const searchInput = document.querySelector('.search-input');
+        // 获取搜索输入框的关闭按钮元素，这里修改变量名为 closeButton
+        const closeButton = document.querySelector('.search-close-btn');
+        // 获取所有卡片元素
+        const cards = document.querySelectorAll('.card');
+
+        // 给搜索图标添加点击事件监听器
+        searchIcon.addEventListener('click', function () {
+            searchCard.style.display = 'block';
+        });
+
+        // 给搜索输入框添加输入事件监听器
+        searchInput.addEventListener('input', function () {
+            const keyword = this.value.toLowerCase();
+            cards.forEach(card => {
+                const cardTitle = card.querySelector('.card-title').textContent.toLowerCase();
+                const cardDescription = card.querySelector('.card-description').textContent.toLowerCase();
+
+                if (cardTitle.includes(keyword) || cardDescription.includes(keyword)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // 给关闭按钮添加点击事件监听器，使用正确的变量名 closeButton
+        closeButton.addEventListener('click', function () {
+            searchCard.style.display = 'none';
+            searchInput.value = '';
+            cards.forEach(card => {
+                card.style.display = 'flex';
+            });
+        });
+
+
+
+    </script>
+</body>
+</html>
