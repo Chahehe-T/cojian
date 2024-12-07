@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三角函数诱导公式.chh</title>
+    <meta name="title" content="三角函数诱导公式" />
+    <meta name="description" content="三角函数诱导公式。" />
+
+    <!-- 引入MathJax 3.x版本库，用于在网页中渲染数学公式 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        /* 定义卡片样式，用于包裹每组诱导公式 */
+       .formula-card {
+            border: 2px solid rgb(37, 172, 255);
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 15px; /* 每组公式卡片之间有一定间隔 */
+        }
+
+               /* 证明部分样式 */
+     .proof-section {
+            margin-top: 15px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        /* 图片样式，可根据实际情况调整宽高、边距等 */
+       .proof-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+
+            width: 155px; /* 设置宽度为200像素，可按需修改数值 */
+            height: 150px; /* 设置高度为150像素，可按需调整 */
+           
+             
+        }
+    </style>
+</head>
+
+<body>
+    <h2>三角函数诱导公式</h2>
+    <div class="formula-card">
+        <h3>诱导公式一</h3>
+        <p>对于任意整数 \(k\) ，有：</p>
+        <p>\(\sin(\alpha + 2k\pi) = \sin\alpha\)，\(k\in Z\)；</p>
+        <p>\(\cos(\alpha + 2k\pi) = \cos\alpha\)，\(k\in Z\)；</p>
+        <p>\(\tan(\alpha + 2k\pi) = \tan\alpha\)，\(k\in Z\)。</p>
+    </div>
+    <div class="formula-card">
+        <h3>诱导公式二</h3>
+        <p>\(\sin(\pi + \alpha) = -\sin\alpha\)；</p>
+        <p>\(\cos(\pi + \alpha) = -\cos\alpha\)；</p>
+        <p>\(\tan(\pi + \alpha) = \tan\alpha\)。</p>
+    </div>
+    <div class="formula-card">
+        <h3>诱导公式三</h3>
+        <p>\(\sin(-\alpha) = -\sin\alpha\)；</p>
+        <p>\(\cos(-\alpha) = \cos\alpha\)；</p>
+        <p>\(\tan(-\alpha) = -\tan\alpha\)。</p>
+    </div>
+    <div class="formula-card">
+        <h3>诱导公式四</h3>
+        <p>\(\sin(\pi - \alpha) = \sin\alpha\)；</p>
+        <p>\(\cos(\pi - \alpha) = -\cos\alpha\)；</p>
+        <p>\(\tan(\pi - \alpha) = -\tan\alpha\)。</p>
+    </div>
+    <div class="formula-card">
+        <h3>诱导公式五</h3>
+        <p>\(\sin(\frac{\pi}{2} - \alpha) = \cos\alpha\)；</p>
+        <p>\(\cos(\frac{\pi}{2} - \alpha) = \sin\alpha\)。</p>
+    </div>
+    <div class="formula-card">
+        <h3>诱导公式六</h3>
+        <p>\(\sin(\frac{\pi}{2} + \alpha) = \cos\alpha\)；</p>
+        <p>\(\cos(\frac{\pi}{2} + \alpha) = -\sin\alpha\)。</p>
+    </div>
+    <div class="formula-card">
+        <h3>诱导公式七</h3>
+        <p>\(\sin(\frac{3\pi}{2} - \alpha) = -\cos\alpha\)；</p>
+        <p>\(\cos(\frac{3\pi}{2} - \alpha) = -\sin\alpha\)。</p>
+    </div>
+    <div class="formula-card">
+        <h3>诱导公式八</h3>
+        <p>\(\sin(\frac{3\pi}{2} + \alpha) = -\cos\alpha\)；</p>
+        <p>\(\cos(\frac{3\pi}{2} + \alpha) = \sin\alpha\)。</p>
+    </div>
+
+<hr/>
+
+<div class="proof-section">
+    <h3>诱导公式证明</h3>
+    <h4>诱导公式一证明：</h4>
+    <p>在单位圆中，角\(\alpha + 2k\pi\)（\(k\in Z\)）与角\(\alpha\)的终边相同。根据三角函数定义，终边相同的角的同名三角函数值相等，所以\(\sin(\alpha + 2k\pi) = \sin\alpha\)，\(\cos(\alpha + 2k\pi) = \cos\alpha\)，进而\(\tan(\alpha + 2k\pi)=\frac{\sin(\alpha + 2k\pi)}{\cos(\alpha + 2k\pi)}=\frac{\sin\alpha}{\cos\alpha}=\tan\alpha\)。</p>
+    <!-- 插入诱导公式一证明对应的图片，假设图片名为proof1.png，你要替换为真实文件名 -->
+    <img src="https://static.codemao.cn/pickduck/SyxnHR-4kx.png?hash=FpPjXAQQ7IeiZ04w-DB9BbsoUVV0" alt="诱导公式一证明示意图">
+    <p style="color:rgb(255, 96, 96)">记忆：转了一整圈（360°）不变，再转也一样。（2k是偶数）</p>
+    <h4>诱导公式二证明：</h4>
+    <p>设角\(\alpha\)终边上一点\(P(x,y)\)，\(r=\sqrt{x^{2}+y^{2}}\)，则\(\sin\alpha=\frac{y}{r}\)，\(\cos\alpha=\frac{x}{r}\)。角\(\pi+\alpha\)的终边与角\(\alpha\)终边关于原点对称，角\(\pi+\alpha\)终边上一点\(P'(-x,-y)\)，\(r'=\sqrt{(-x)^{2}+(-y)^{2}}=\sqrt{x^{2}+y^{2}}=r\)。所以\(\sin(\pi+\alpha)=\frac{-y}{r}=-\sin\alpha\)，\(\cos(\pi+\alpha)=\frac{-x}{r}=-\cos\alpha\)，\(\tan(\pi+\alpha)=\frac{-y}{-x}=\tan\alpha\)。</p>
+    <!-- 插入诱导公式二证明对应的图片，假设图片名为proof2.png，你要替换为真实文件名 -->
+    <img src="https://static.codemao.cn/pickduck/rJKqzAZE1g.png?hash=FjWwpLMravckULA_MsXnGNZ2btw6" alt="诱导公式二证明示意图">
+    <p style="color:rgb(255, 96, 96)">记忆：我们初中有句记忆口诀，“关于谁，谁不变；关于原点都改变”，在这里同样适用，你得到坐标后根据定义可得结果，所以你记忆时，仅需这句话“关于原点都改变”（转180°（\(\pi\)）），cos是x坐标，sin是y坐标，具体请见课本，这里不过多赘述。下同。当然你想“奇变偶不变，符号看象限”也行，不记也行，看你自己。</p>
+    <h4>诱导公式三证明：</h4>
+    <p>设角\(\alpha\)终边上一点\(P(x,y)\)，\(r=\sqrt{x^{2}+y^{2}}\)，则\(\sin\alpha=\frac{y}{r}\)，\(\cos\alpha=\frac{x}{r}\)。角\(-\alpha\)的终边与角\(\alpha\)终边关于\(x\)轴对称，角\(-\alpha\)终边上一点\(P''(x,-y)\)，\(r''=\sqrt{x^{2}+(-y)^{2}}=\sqrt{x^{2}+y^{2}}=r\)。所以\(\sin(-\alpha)=\frac{-y}{r}=-\sin\alpha\)，\(\cos(-\alpha)=\frac{x}{r}=\cos\alpha\)，\(\tan(-\alpha)=\frac{-y}{x}=-\tan\alpha\)。</p>
+    <!-- 插入诱导公式三证明对应的图片，假设图片名为proof3.png，你要替换为真实文件名 -->
+    <img src="https://static.codemao.cn/pickduck/r1bjL0Z4Jl.png?hash=FlhblCyWsVDVdDD6E1a_oZibpWce" alt="诱导公式三证明示意图">
+    <p style="color:rgb(255, 96, 96)">记忆：“关于谁谁不变”这里是关于x轴对称，x坐标不变，y坐标变，以此记忆即可。</p>
+    <h4>诱导公式四证明：</h4>
+    <p>设角\(\alpha\)终边上一点\(P(x,y)\)，\(r=\sqrt{x^{2}+y^{2}}\)，则\(\sin\alpha=\frac{y}{r}\)，\(\cos\alpha=\frac{x}{r}\)。角\(\pi-\alpha\)的终边与角\(\alpha\)终边关于\(y\)轴对称，角\(\pi-\alpha\)终边上一点\(P'''(-x,y)\)，\(r'''=\sqrt{(-x)^{2}+y^{2}}=\sqrt{x^{2}+y^{2}}=r\)。所以\(\sin(\pi-\alpha)=\frac{y}{r}=\sin\alpha\)，\(\cos(\pi-\alpha)=\frac{-x}{r}=-\cos\alpha\)，\(\tan(\pi-\alpha)=\frac{y}{-x}=-\tan\alpha\)。</p>
+    <!-- 插入诱导公式四证明对应的图片，假设图片名为proof4.png，你要替换为真实文件名 -->
+    <img src="https://static.codemao.cn/pickduck/SkU0UCZNke.png?hash=FnTN8iiCd2V0opTUS_H2E4ZzGHil" alt="诱导公式四证明示意图">
+    <p style="color:rgb(255, 96, 96)">记忆：“关于谁谁不变”这里是关于y轴对称，y坐标不变，x坐标变，以此记忆即可。</p>
+    <h4>诱导公式五证明：</h4>
+    <p>在单位圆中，设角\(\alpha\)终边与单位圆交点坐标为\( (x,y)\)，则\(\sin\alpha = y\)，\(\cos\alpha = x\)。角\(\frac{\pi}{2}-\alpha\)终边与角\(\alpha\)终边关于直线\(y = x\)对称，其终边与单位圆交点坐标为\((y,x)\)，所以\(\sin(\frac{\pi}{2}-\alpha)=x=\cos\alpha\)，\(\cos(\frac{\pi}{2}-\alpha)=y=\sin\alpha\)。</p>
+    <!-- 插入诱导公式五证明对应的图片，假设图片名为proof5.png，你要替换为真实文件名 -->
+    <img src="https://static.codemao.cn/pickduck/r1gvv0bVkl.png?hash=FtdJPgnmQmfw2rd7Wl-XIXfVlcFK" alt="诱导公式五证明示意图">
+    <p style="color:rgb(255, 96, 96)">记忆：反函数嘛，x和y互换嘛，你证全等（一眼洞穿）嘛，记忆图。</p>
+    <h4>诱导公式六证明：</h4>
+    <p>由诱导公式五\(\sin(\frac{\pi}{2}-\alpha)=\cos\alpha\)，\(\cos(\frac{\pi}{2}-\alpha)=\sin\alpha\)，将\(\alpha\)换为\(-\alpha\)可得\(\sin(\frac{\pi}{2}+ \alpha)=\cos(-\alpha)=\cos\alpha\)，\(\cos(\frac{\pi}{2}+ \alpha)=\sin(-\alpha)=-\sin\alpha\)。</p>
+    <!-- 插入诱导公式六证明对应的图片，假设图片名为proof6.png，你要替换为真实文件名 -->
+    <img src="https://static.codemao.cn/pickduck/ByK3_Cb4Je.png?hash=FnQoFJSpen-HnKsTiu3_w69yqVQt" alt="诱导公式六证明示意图">
+    <p style="color:rgb(255, 96, 96)">记忆：根据公式五“反函数嘛，x和y互换嘛，你证全等（一眼洞穿）嘛，记忆图。”看图，关于y轴对称。课本有。</p>
+    <h4>诱导公式七证明：</h4>
+    <p>由诱导公式五\(\sin(\frac{\pi}{2}-\alpha)=\cos\alpha\)，\(\cos(\frac{\pi}{2}-\alpha)=\sin\alpha\)，将\(\alpha\)换为\(\pi-\alpha\)可得\(\sin(\frac{3\pi}{2}-\alpha)=\sin(\pi + (\frac{\pi}{2}-\alpha))=-\sin(\frac{\pi}{2}-\alpha)=-\cos\alpha\)，\(\cos(\frac{3\pi}{2}-\alpha)=\cos(\pi + (\frac{\pi}{2}-\alpha))=-\cos(\frac{\pi}{2}-\alpha)=-\sin\alpha\)。</p>
+    <!-- 插入诱导公式七证明对应的图片，假设图片名为proof7.png，你要替换为真实文件名 -->
+    <img src="proof7.png" alt="诱导公式七证明示意图">
+    <h4>诱导公式八证明：</h4>
+    <p>由诱导公式六\(\sin(\frac{\pi}{2}+ \alpha)=\cos\alpha\)，\(\cos(\frac{\pi}{2}+ \alpha)=-\sin\alpha\)，将\(\alpha\)换为\(\pi+\alpha\)可得\(\sin(\frac{3\pi}{2}+ \alpha)=\sin(\pi + (\frac{\pi}{2}+ \alpha))=-\sin(\frac{\pi}{2}+ \alpha)=-\cos\alpha\)，\(\cos(\frac{3\pi}{2}+ \alpha)=\cos(\pi + (\frac{\pi}{2}+ \alpha))=-\cos(\frac{\pi}{2}+ \alpha)=\sin\alpha\)。</p>
+    <!-- 插入诱导公式八证明对应的图片，假设图片名为proof8.png，你要替换为真实文件名 -->
+    <img src="proof8.png" alt="诱导公式八证明示意图">
+    <p style="color:rgb(34, 179, 252)">记住图，记证明，别死记。多做题。</p>
+    <p>made by 茶河禾</p>
+</div>
+</body>
+
+</html>
