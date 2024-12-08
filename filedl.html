@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>下载文件-茶河禾控件</title>
+  <style>
+    /* 全局样式重置与字体设置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* 页面整体背景，营造深邃的科技感氛围 */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #0f0f14, #1a1a23);
+      color: #e0e0e6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 35px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.3);
+      letter-spacing: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 按钮通用样式 */
+    a {
+      position: relative;
+      padding: 20px 60px;
+      background-color: rgba(45, 45, 45, 1);
+      border-radius: 50px;
+      color: #999;
+      font-size: 1.5em;
+      text-decoration: none;
+      overflow: hidden;
+      transition:.5s;
+      cursor: pointer;
+    }
+
+    a:hover {
+      color: gold; /* 鼠标悬停时文字变为金色 */
+      text-shadow: 0 0 15px gold, 0 0 15px gold; /* 增强金色发光效果 */
+    }
+
+    a span {
+      position: relative;
+      z-index: 1;
+      letter-spacing:.2em;
+    }
+
+    /* 按钮光标跟随效果的前置元素样式 */
+    a::before {
+      content: '';
+      position: absolute;
+      top: var(--y);
+      left: var(--x);
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle at center, gold, transparent 50%);
+      opacity: 0;
+      transition:.5s, top 0s, left 0s;
+    }
+
+    a:hover::before {
+      opacity: 1;
+    }
+
+    /* 按钮内部背景样式（原代码中的a::after部分，保留样式但稍作调整） */
+    a::after {
+      content: '';
+      position: absolute;
+      background-color: rgba(30, 30, 30, 0.8);
+      inset: 2px;
+      border-radius: 48px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>文件下载</h1>
+  <a href="" id="downloadBtn" style="--clr:gold;"><span>点击下载文件</span></a>
+  <script>
+    // 页面加载完成后执行
+    window.onload = function () {
+      // 获取当前页面的完整URL
+      const currentUrl = window.location.href;
+      // 查找参数起始位置，修改此处，查找包含?filedl=的位置
+      const paramStartIndex = currentUrl.indexOf('?filedl=');
+      let paramValue = '';
+      if (paramStartIndex!== -1) {
+        // 提取参数值时，从?filedl= 后面开始取
+        paramValue = currentUrl.substring(paramStartIndex + '?filedl='.length);
+      }
+
+      const downloadBtn = document.getElementById('downloadBtn');
+      downloadBtn.addEventListener('click', function () {
+        const fileUrl = `https://cojian.chahehe.space/file/${paramValue}`;
+        // 使用fetch获取文件
+        fetch(fileUrl)
+         .then(response => {
+            if (!response.ok) {
+              throw new Error(`网络响应错误，状态码: ${response.status}`);
+            }
+            return response.blob();
+          })
+         .then(blob => {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('object');
+            link.data = url;
+            link.type = 'application/octet-stream';
+            document.body.appendChild(link);
+            link.dispatchEvent(new MouseEvent('click'));
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+          })
+         .catch(error => {
+            console.error('文件下载出现错误:', error);
+          });
+      });
+
+      // 为按钮添加光标跟随效果代码
+      let btns = document.querySelectorAll('a');
+      btns.forEach(btn => {
+        btn.onmousemove = (e) => {
+          let x = e.pageX - btn.offsetLeft;
+          let y = e.pageY - btn.offsetTop;
+
+          btn.style.setProperty('--x', `${x}px`);
+          btn.style.setProperty('--y', `${y}px`);
+        }
+      });
+    };
+  </script>
+</body>
+
+</html>
