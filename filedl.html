@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>下载文件-茶河禾控件</title>
+  <title>文件下载-茶河禾控件</title>
+  <link rel="icon" href="https://static.codemao.cn/pickduck/BJ6BQwKX1x.png?hash=FpCMMKouB7IebBgWoobRgJY3u1pf" type="image/png">
   <style>
     /* 全局样式重置与字体设置 */
     * {
@@ -39,8 +40,8 @@
       z-index: 1;
     }
 
-    /* 按钮通用样式 */
-    a {
+    /* 按钮样式（以span标签为例，可按需替换） */
+    span.download-btn {
       position: relative;
       padding: 20px 60px;
       background-color: rgba(45, 45, 45, 1);
@@ -49,23 +50,24 @@
       font-size: 1.5em;
       text-decoration: none;
       overflow: hidden;
-      transition:.5s;
+      transition: 0.5s;
       cursor: pointer;
+      display: inline-block;
     }
 
-    a:hover {
-      color: gold; /* 鼠标悬停时文字变为金色 */
-      text-shadow: 0 0 15px gold, 0 0 15px gold; /* 增强金色发光效果 */
+    span.download-btn:hover {
+      color: gold;
+      text-shadow: 0 0 15px gold, 0 0 15px gold;
     }
 
-    a span {
+    span.download-btn span {
       position: relative;
       z-index: 1;
-      letter-spacing:.2em;
+      letter-spacing: 0.2em;
     }
 
     /* 按钮光标跟随效果的前置元素样式 */
-    a::before {
+    span.download-btn::before {
       content: '';
       position: absolute;
       top: var(--y);
@@ -75,15 +77,15 @@
       height: 200px;
       background: radial-gradient(circle at center, gold, transparent 50%);
       opacity: 0;
-      transition:.5s, top 0s, left 0s;
+      transition: 0.5s, top 0s, left 0s;
     }
 
-    a:hover::before {
+    span.download-btn:hover::before {
       opacity: 1;
     }
 
-    /* 按钮内部背景样式（原代码中的a::after部分，保留样式但稍作调整） */
-    a::after {
+    /* 按钮内部背景样式 */
+    span.download-btn::after {
       content: '';
       position: absolute;
       background-color: rgba(30, 30, 30, 0.8);
@@ -95,18 +97,18 @@
 
 <body>
   <h1>文件下载</h1>
-  <a href="" id="downloadBtn" style="--clr:gold;"><span>点击下载文件</span></a>
+  <span id="downloadBtn" class="download-btn"><span>点击下载文件</span></span>
   <script>
     // 页面加载完成后执行
     window.onload = function () {
       // 获取当前页面的完整URL
       const currentUrl = window.location.href;
-      // 查找参数起始位置，修改此处，查找包含?filedl=的位置
-      const paramStartIndex = currentUrl.indexOf('?filedl=');
+      // 查找参数起始位置，改为查找包含?n=的位置
+      const paramStartIndex = currentUrl.indexOf('?n=');
       let paramValue = '';
       if (paramStartIndex!== -1) {
-        // 提取参数值时，从?filedl= 后面开始取
-        paramValue = currentUrl.substring(paramStartIndex + '?filedl='.length);
+        // 提取参数值时，从?n= 后面开始取
+        paramValue = currentUrl.substring(paramStartIndex + '?n='.length);
       }
 
       const downloadBtn = document.getElementById('downloadBtn');
@@ -114,13 +116,13 @@
         const fileUrl = `https://cojian.chahehe.space/file/${paramValue}`;
         // 使用fetch获取文件
         fetch(fileUrl)
-         .then(response => {
+       .then(response => {
             if (!response.ok) {
               throw new Error(`网络响应错误，状态码: ${response.status}`);
             }
             return response.blob();
           })
-         .then(blob => {
+       .then(blob => {
             const url = URL.createObjectURL(blob);
             const link = document.createElement('object');
             link.data = url;
@@ -130,13 +132,13 @@
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
           })
-         .catch(error => {
+       .catch(error => {
             console.error('文件下载出现错误:', error);
           });
       });
 
-      // 为按钮添加光标跟随效果代码
-      let btns = document.querySelectorAll('a');
+      // 为按钮添加光标跟随效果代码，选择器对应按钮元素（这里是span.download-btn）
+      let btns = document.querySelectorAll('span.download-btn');
       btns.forEach(btn => {
         btn.onmousemove = (e) => {
           let x = e.pageX - btn.offsetLeft;
