@@ -22,7 +22,7 @@
       color: #e0e0e6;
       min-height: 100vh;
       display: flex;
-      flex-direction="column";
+      flex-direction: column; /* 将这里修改为column，让子元素纵向排列 */
       align-items: center;
       justify-content: center;
       position: relative;
@@ -116,7 +116,7 @@
       const downloadBtn = document.getElementById('downloadBtn');
       downloadBtn.addEventListener('click', function () {
         const fileUrl = `https://cojian.chahehe.space/file/${paramValue}`;
-        const fileName = paramValue;  // 这里直接使用获取到的参数值作为文件名，你也可以根据实际需求进一步处理文件名，比如添加固定前缀等
+        const fileName = paramValue;
         // 使用fetch获取文件
         fetch(fileUrl)
       .then(response => {
